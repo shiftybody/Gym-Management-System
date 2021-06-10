@@ -1,19 +1,22 @@
 public class Member {
 
-    private final String name;
+    private final String id;
+    private final String nombre;
     private final String address;
     private final int number;
     private final double weight, height;
     private final int age;
-    private final char sex;
+    private final String sex;
     private final String complexion;
-    private ActivityList listOfActivities, tempList;
-    private double totalCost, totalCaloriesBurned;
+    private final boolean estado;
+    private final ActivityList listOfActivities;
 
-    public Member(String name, String address, int number, double weight, double height, int age, char sex, String complexion) {
+    private double totalCost;
 
 
-        this.name = name;
+    public Member(String id, String name, String address, int number, double weight, double height, int age, String sex, String complexion, boolean estado) {
+        this.id = id;
+        this.nombre = name;
         this.address = address;
         this.number = number;
         this.weight = weight;
@@ -21,16 +24,15 @@ public class Member {
         this.age = age;
         this.sex = sex;
         this.complexion = complexion;
+        this.estado = estado; //activo/true inactivo/false
 
         this.listOfActivities = new ActivityList();
-        this.tempList = new ActivityList();
+        this.totalCost = 0.0;
 
-        this.totalCost = totalCost;
-        this.totalCaloriesBurned = totalCaloriesBurned;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
     public String getAddress() {
@@ -53,7 +55,7 @@ public class Member {
         return age;
     }
 
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
@@ -65,16 +67,8 @@ public class Member {
         return listOfActivities;
     }
 
-    public ActivityList getTempList() {
-        return tempList;
-    }
-
     public double getTotalCost() {
         return totalCost;
-    }
-
-    public double getTotalCaloriesBurned() {
-        return totalCaloriesBurned;
     }
 
     public void increaseTotalCost(double cost) {
@@ -84,25 +78,14 @@ public class Member {
     @Override
     public String toString() {
         return "Member" +
-                "_" + name +
+                "_" + nombre +
                 "_" + address +
                 "_" + number +
                 "_" + weight +
                 "_" + height +
                 "_" + age +
                 "_" + sex +
-                "_" + complexion ;
+                "_" + complexion;
     }
 
-    // Clone list
-    public ActivityList cloneList(ActivityList act) {
-
-        tempList.addActivity(act.getActivity());
-
-        return tempList;
-    }
-
-    public ActivityList getActivityList() {
-        return listOfActivities;
-    }
 }

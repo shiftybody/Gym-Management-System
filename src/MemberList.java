@@ -7,34 +7,20 @@ public class MemberList implements Iterable<Member> {
 
     MemberList() { }
 
-    public boolean addMember(Member member){
+    public void addMember(Member member){
         members.add(member);
-        return false;
     }
 
     public Member findMember(String name)
     {
         for (Member memb:
              members) {
-            if (memb.getName().equalsIgnoreCase(name))
+            if (memb.getNombre().equalsIgnoreCase(name))
                 return memb;
         }
         return null;
     }
 
-
-    public String getAll()
-    {
-
-        String message = "All members :\n";
-
-        for (Member memb:
-             members) {
-            message += memb.toString() + "\n";
-            return message;
-        }
-        return null;
-    }
 
     public int getNoOfMember() {
         return members.size();

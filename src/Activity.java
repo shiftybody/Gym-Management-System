@@ -6,18 +6,11 @@ public class Activity {
     private double durationInHours;
     private double costPerHour;
 
-
-    public Activity(){
-
-    }
-
-    public Activity(String activityName, double MET, double durationInHours, double costPerHour) {
+    public Activity(String activityName, double durationInHours, double costPerHour) {
 
             this.activityName = activityName;
             this.durationInHours = durationInHours;
-            this.durationInHours = 0.0;
             this.costPerHour = costPerHour;
-            this.costPerHour = 0.0;
 
     }
 
@@ -25,20 +18,8 @@ public class Activity {
         return activityName;
     }
 
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
-    }
-
-    public double getDurationInHours() {
-        return durationInHours;
-    }
-
     public void setDurationInHours(double durationInHours) {
         this.durationInHours = durationInHours;
-    }
-
-    public double getCostPerHour() {
-        return costPerHour;
     }
 
     public void setCostPerHour(double costPerHour) {
@@ -47,8 +28,7 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "Activity_" +
-                "_" + activityName +
+        return        activityName +
                 "_" + durationInHours +
                 "_" + costPerHour ;
     }
@@ -59,4 +39,6 @@ public class Activity {
         }
         return 0;
     }
+
+
 }
