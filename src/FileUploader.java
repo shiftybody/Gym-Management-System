@@ -3,7 +3,7 @@ import java.io.IOException;
 
 public interface FileUploader {
 
-    Members loadMembers(String fileName)
+    MemberList loadMembers(String fileName)
         throws FileNotFoundException, IOException, DataFormatException;
 
 }

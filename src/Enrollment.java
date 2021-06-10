@@ -1,6 +1,0 @@
-
-//matricula
-
-public class Enrollment{
-
-}

@@ -7,21 +7,19 @@ import java.util.StringTokenizer;
 public class MembersFileUploader implements FileUploader {
 
     private final static String separator = "_";
-    private final static String clientPref = "Client";
-    private final static String instructorPref = "Instructor";
+    private final static String prefMember = "Member";
 
 
-    private Member readClient(String line) throws DataFormatException{
+    private Member readMember(String line) throws DataFormatException{
 
         StringTokenizer st = new StringTokenizer(line, separator);
 
-        if (st.countTokens() != 4) {
-            throw new DataFormatException("Expected in:  " + line + "\n  Format: Product_code_description_price");
+        if (st.countTokens() != 9) {
+            throw new DataFormatException("Expected in:  " + line + "\n ");
 
         } else {
             try {
                 st.nextToken();
-                String id = st.nextToken();
                 String name = st.nextToken();
                 String address = st.nextToken();
                 int number  = Integer.parseInt(st.nextToken());
@@ -31,7 +29,7 @@ public class MembersFileUploader implements FileUploader {
                 char sex = st.nextToken().charAt(0);
                 String complexion = st.nextToken();
 
-                return new Client(id,name,address,number,weight,height,age,sex,complexion);
+                return new Member(name,address,number,weight,height,age,sex,complexion);
 
             }catch(NumberFormatException  nfe){
                 // lanzamos la excepción DataFormatException cuando existe un NumberFormatException
@@ -40,53 +38,28 @@ public class MembersFileUploader implements FileUploader {
         }
     }
 
-    private Instructor readInstructor(String line) throws DataFormatException{
-        StringTokenizer st = new StringTokenizer(line, separator);
-
-        if (st.countTokens() != 10) {
-            throw new DataFormatException("Expected in:  " + line +
-                    "\n  Format: Coffee_code_description_price_origin_roast_flavor_aroma_acidity_body");
-
-        } else {
-            try {
-                st.nextToken();
-                String id = st.nextToken();
-                String name = st.nextToken();
-                String address = st.nextToken();
-                int number  = Integer.parseInt(st.nextToken());
-
-                return new Instructor(id, name,address,number);
-
-            }catch(NumberFormatException  nfe){
-                throw new DataFormatException("Expected in:  " + line + "\n  Price double type");
-            }
-        }
-    }
-
 
     @Override
-    public Members loadMembers(String fileName) throws FileNotFoundException, IOException, DataFormatException {
+    public MemberList loadMembers(String fileName) throws FileNotFoundException, IOException, DataFormatException {
 
         BufferedReader fileIn =	new BufferedReader(new FileReader(fileName));
-        Members members = Members.getSingleton();
+        MemberList memberList = new MemberList();
 
         String line = fileIn.readLine();
         while (line != null){
 
             Member member = null;
 
-            if (line.startsWith(clientPref)){
-                member = readClient(line);
-            }else if (line.startsWith(instructorPref)){
-                member = readInstructor(line);
+            if (line.startsWith(prefMember)){
+                member = readMember(line);
             }else{
                 throw new DataFormatException("Prefix espected in: " + line);
             }
 
-            members.addMember(member);
+            memberList.addMember(member);
             line =  fileIn.readLine();
 
         }
-        return members;
+        return memberList;
     }
 }
