@@ -1,32 +1,37 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Clase que modela un catalogo o lista de actividades
+ *
+ * @author Shiftybody
+ * @version 0.0.1
+ */
 public class ActivityList implements Iterable<Activity> {
 
+
+    /**
+     * definimos he instanciamos la interfaz iterrator para recorrer
+     * elementos de tipo Activity
+     */
     private final ArrayList<Activity> activities = new ArrayList<>();
 
-    ActivityList(){
 
-    }
-
-    // Adds activity into arraylist
+    /**
+     *  Método que agrega una actividad dentro del arrayList
+     * @param activity objeto de tipo Activity
+     */
     public void addActivity(Activity activity) {
         activities.add(activity);
     }
 
-
     /**
-     * Returns an iterator over elements of type {@code T}.
+     *Método que sobreescribe la interfaz iterator
      *
-     * @return an Iterator.
+     * @return un iterados sobre las instancias de la colección producto.
      */
     @Override
     public Iterator<Activity> iterator() {
         return activities.iterator();
-    }
-
-
-    public Activity getActivity() {
-        return (Activity) activities.iterator();
     }
 }

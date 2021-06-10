@@ -1,3 +1,7 @@
+/**
+ * @author Shiftybody
+ * @version 0.0.1
+ */
 public class Member {
 
     private final String id;
@@ -8,13 +12,25 @@ public class Member {
     private final int age;
     private final String sex;
     private final String complexion;
-    private final boolean estado;
-    private final ActivityList listOfActivities;
+    private final String activity;
+    private final String estadoCuenta; //activo/true inactivo/false
 
-    private double totalCost;
-
-
-    public Member(String id, String name, String address, int number, double weight, double height, int age, String sex, String complexion, boolean estado) {
+    /**
+     * Método constructor de la clase Member
+     *
+     * @param id valor inicial de id
+     * @param name valor inicial de name
+     * @param address valor inicial de address
+     * @param number valor inicial de number
+     * @param weight valor inicial de weight
+     * @param height valor inicial de height
+     * @param age valor inicial de height
+     * @param sex valor inicial de sex
+     * @param complexion valor inicial de complexion
+     * @param activity valor inicial de activity
+     * @param estado valor inicial de estado
+     */
+    public Member(String id, String name, String address, int number, double weight, double height, int age, String sex, String complexion, String activity, String estado) {
         this.id = id;
         this.nombre = name;
         this.address = address;
@@ -24,60 +40,34 @@ public class Member {
         this.age = age;
         this.sex = sex;
         this.complexion = complexion;
-        this.estado = estado; //activo/true inactivo/false
-
-        this.listOfActivities = new ActivityList();
-        this.totalCost = 0.0;
+        this.activity = activity;
+        this.estadoCuenta = estado;
 
     }
 
-    public String getNombre() {
-        return nombre;
+    /**
+     * Método consulto del id de un objeto Member
+     * @return
+     */
+    public String getId() {
+        return id;
     }
 
-    public String getAddress() {
-        return address;
+    /**
+     *Método consulto de la actividad de un objeto Member
+     * @return
+     */
+    public String getActivity() {
+        return activity;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public String getComplexion() {
-        return complexion;
-    }
-
-    public ActivityList getListOfActivities() {
-        return listOfActivities;
-    }
-
-    public double getTotalCost() {
-        return totalCost;
-    }
-
-    public void increaseTotalCost(double cost) {
-        totalCost += cost;
-    }
-
+    /**
+     * Sobreescribe el método toString
+     * @return un modelo tipo String del objeto Member
+     */
     @Override
     public String toString() {
-        return "Member" +
+        return id +
                 "_" + nombre +
                 "_" + address +
                 "_" + number +
@@ -85,7 +75,8 @@ public class Member {
                 "_" + height +
                 "_" + age +
                 "_" + sex +
-                "_" + complexion;
+                "_" + complexion +
+                "_" + activity +
+                "_" + estadoCuenta;
     }
-
 }
